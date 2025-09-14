@@ -14,7 +14,8 @@ coming soon
 
 ## How we built it
 
-coming soon 
+coming soon   
+For detailed week-by-week updates on the project's development and delivery, see the [Documentation](Documentation).
 
 ## Challenges we ran into
 

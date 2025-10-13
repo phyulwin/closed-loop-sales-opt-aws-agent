@@ -1,0 +1,42 @@
+# Node
+node_modules/
+
+# Build outputs
+dist/
+build/
+.vite/
+
+# Local env files
+.env
+.env.*.local
+.env.local
+
+# Logs
+npm-debug.log*
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editors/IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Test coverage
+coverage/
+
+# temp
+tmp/
+temp/
+
+# Misc
+.pnpm-debug.log
+
+# Lockfiles (keep package-lock.json committed; uncomment if you want to ignore)
+# package-lock.json

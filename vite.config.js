@@ -1,8 +1,5 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
-// Replace 'phyulwin' and 'closed-loop-sales-opt-aws-agent' with your GitHub username and repo
-export default defineConfig({
+// Minimal CommonJS Vite config to set base for GitHub Pages.
+// Avoid importing ESM-only plugins here to prevent CJS/ESM load errors.
+module.exports = {
     base: '/closed-loop-sales-opt-aws-agent/',
-    plugins: [react()],
-})
+}

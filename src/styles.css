@@ -1,57 +1,67 @@
-:root {
-    --bg: #0f172a;
-    --card: #0b1220;
-    --accent: #7c3aed;
-    --text: #e6eef8;
-}
-
-* {
-    box-sizing: border-box
-}
-
-html,
-body,
-#root {
-    height: 100%
-}
-
 body {
-    margin: 0;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background: linear-gradient(180deg, var(--bg), #071029);
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    justify-content: center
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f9fafc;
+  color: #222;
+  margin: 0;
+  padding: 0;
 }
 
-.app {
-    width: min(900px, 95%);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-    padding: 32px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6)
+header {
+  background: #0077cc;
+  color: white;
+  padding: 1rem;
+  text-align: center;
 }
 
-.header h1 {
-    margin: 0 0 12px 0;
-    font-size: 28px;
-    color: var(--accent)
+nav button {
+  margin: 0.3rem;
+  padding: 0.6rem 1rem;
+  background: white;
+  color: #0077cc;
+  border: 1px solid #0077cc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+nav button:hover { background: #e6f2ff; }
+
+main { padding: 1rem 2rem; }
+
+section { display: none; }
+section.visible { display: block; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+th { background: #e8f4ff; }
+
+button {
+  background: #00a86b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+button:hover { background: #00c77f; }
+
+#status {
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #0077cc;
 }
 
-.content p {
-    margin: 0 0 16px 0
-}
-
-.btn {
-    background: var(--accent);
-    border: none;
-    color: white;
-    padding: 10px 16px;
-    border-radius: 8px;
-    cursor: pointer
-}
-
-.btn:hover {
-    filter: brightness(1.05)
+#alerts li {
+  background: #e8f4ff;
+  margin: 0.4rem 0;
+  padding: 0.6rem;
+  border-left: 4px solid #0077cc;
+  list-style: none;
 }

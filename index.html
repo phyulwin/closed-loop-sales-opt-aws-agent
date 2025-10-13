@@ -1,16 +1,51 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>React (HTML + CSS) App</title>
-    <link rel="stylesheet" href="/src/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Shopkeeper Console</title>
+  <link rel="stylesheet" href="src/styles.css">
 </head>
-
 <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-</body>
+  <header>
+    <h1>AI Shopkeeper Console</h1>
+    <nav>
+      <button onclick="showSection('manage')">Manage Products</button>
+      <button onclick="showSection('simulate')">Run Simulation</button>
+      <button onclick="showSection('insights')">View Insights</button>
+    </nav>
+  </header>
 
+  <main>
+    <!-- Manage Products -->
+    <section id="manage" class="visible">
+      <h2>Manage Products</h2>
+      <table id="productTable">
+        <thead>
+          <tr><th>Name</th><th>Price ($)</th><th>Stock</th></tr>
+        </thead>
+        <tbody id="productRows"></tbody>
+      </table>
+      <button id="saveProducts">Save Changes</button>
+    </section>
+
+    <!-- Run Simulation -->
+    <section id="simulate">
+      <h2>Sales Simulation</h2>
+      <button id="sellNow">SELL NOW</button>
+      <button id="stopNow">STOP</button>
+      <div id="status">Waiting to start...</div>
+      <canvas id="salesChart"></canvas>
+    </section>
+
+    <!-- Insights -->
+    <section id="insights">
+      <h2>Agent Insights & Alerts</h2>
+      <ul id="alerts"></ul>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="src/simulation.js"></script>
+</body>
 </html>

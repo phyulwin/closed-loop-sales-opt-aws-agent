@@ -4,6 +4,6 @@
     "private": true,
     "description": "Static site for AI Shopkeeper Console. GitHub Pages should serve the repository root (index.html).",
     "scripts": {
-        "start": "node server.js"
+        "start": "node src/server.js"
     }
 }

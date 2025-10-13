@@ -1,8 +1,16 @@
 import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 
 app.use(express.json());
 app.use(express.static("src"));
+app.use(express.static(path.join(__dirname, "dist"))); // serve React build
+
 // TODO: Connect to DynamoDB
 // import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 // const db = new DynamoDBClient({ region: "us-east-1" });

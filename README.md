@@ -32,3 +32,18 @@ coming soon
 ## What's next for Closed-Loop Sales Optimization Agent
 
 coming soon 
+
+## Deployment / GitHub Pages
+
+This repository contains a simple static site consisting of `index.html`, `server.js`, `simulation.js`, and `src/styles.css`.
+
+To have GitHub Pages serve the repository root (so `index.html` in the repo root is used), go to your repository's Settings → Pages and set the source to `main` branch and folder `/ (root)`.
+
+To preview locally, you can run the included server:
+
+```powershell
+npm install
+node server.js
+```
+
+Then open http://localhost:3000 in your browser.

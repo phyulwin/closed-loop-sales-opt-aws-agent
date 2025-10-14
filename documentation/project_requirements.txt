@@ -1,0 +1,31 @@
+1. LLM hosted on AWS Bedrock
+
+You’re already using Claude 3.5 Sonnet through Amazon Bedrock.
+
+That checks the “LLM hosted on Bedrock” requirement.
+
+2. Use AWS services
+
+You already or can easily include these:
+
+Amazon Bedrock AgentCore → your code uses it to host and run your agent logic.
+
+Strands Agents SDK → wraps your tools and logic.
+
+AWS Lambda → runs your agent (compute).
+
+Amazon DynamoDB → stores product info and sales logs.
+
+Amazon CloudWatch → logs agent actions.
+
+(Optional) Amazon API Gateway → to trigger the agent from your frontend.
+
+That covers multiple approved AWS services.
+
+3. AI Agent qualifications
+
+Reasoning LLM: Claude 3.5 Sonnet makes strategic pricing and bundling decisions.
+
+Autonomous behavior: The agent runs, evaluates, and adjusts prices without human input.
+
+Integrations: It connects to APIs (via Lambda + Gateway) and databases (DynamoDB).

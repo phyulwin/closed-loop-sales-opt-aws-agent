@@ -40,3 +40,31 @@ temp/
 
 # Lockfiles (keep package-lock.json committed; uncomment if you want to ignore)
 # package-lock.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.venv/
+.env
+my_agent/.env
+
+# VSCode / IDE
+.vscode/
+.idea/
+
+# AWS & credentials
+*.pem
+*.aws/
+.aws/
+
+# Logs & temp files
+*.log
+*.tmp
+*.DS_Store
+
+# Notebooks & cache
+.ipynb_checkpoints/
+.cache/

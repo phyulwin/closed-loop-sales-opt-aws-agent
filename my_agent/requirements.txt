@@ -1,0 +1,8 @@
+bedrock-agentcore
+strands-agents>=0.1.0
+strands-agents-tools>=0.1.0
+bedrock-agentcore-starter-toolkit
+boto3
+awscli
+requests
+python-dotenv

@@ -1,66 +1,89 @@
-// Basic UI switching
-function showSection(id) {
-    document.querySelectorAll("section").forEach(s => s.classList.remove("visible"));
-    document.getElementById(id).classList.add("visible");
+const API_BASE = "https://5zkbyoqs9e.execute-api.us-east-1.amazonaws.com/prod/products";
+
+// Load products from DynamoDB
+async function loadProducts() {
+  const table = document.getElementById("productRows");
+  table.innerHTML = "";
+  const res = await fetch(API_BASE);
+  const products = await res.json();
+
+  products.forEach((p) => {
+    const row = document.createElement("tr");
+    row.dataset.id = p.product_id;
+    row.innerHTML = `
+      <td contenteditable="true">${p.name}</td>
+      <td contenteditable="true">${p.price}</td>
+      <td contenteditable="true">${p.inventory ?? p.stock}</td>
+      <td>
+        <button class="saveBtn">Save</button>
+        <button class="deleteBtn">Delete</button>
+      </td>
+    `;
+    table.appendChild(row);
+  });
+
+  document.querySelectorAll(".saveBtn").forEach(btn =>
+    btn.onclick = e => saveProduct(e.target.closest("tr"))
+  );
+  document.querySelectorAll(".deleteBtn").forEach(btn =>
+    btn.onclick = e => deleteProduct(e.target.closest("tr"))
+  );
 }
 
-const productRows = document.getElementById("productRows");
-
-document.getElementById("addProductBtn").addEventListener("click", () => {
-  const name = document.getElementById("newName").value.trim();
+// Add new product
+async function addProduct() {
+  const name = document.getElementById("newName").value;
   const price = parseFloat(document.getElementById("newPrice").value);
   const stock = parseInt(document.getElementById("newStock").value);
+  if (!name || isNaN(price) || isNaN(stock)) return alert("Fill all fields!");
 
-  if (!name || isNaN(price) || isNaN(stock)) return alert("Please fill all fields correctly.");
+  const newItem = {
+    product_id: name.toLowerCase().replace(/\s+/g, "_"),
+    name,
+    price,
+    inventory: stock
+  };
 
-  const row = document.createElement("tr");
-  row.innerHTML = `
-    <td>${name}</td>
-    <td>${price.toFixed(2)}</td>
-    <td>${stock}</td>
-    <td><button class="removeBtn">Remove</button></td>
-  `;
-  productRows.appendChild(row);
-  document.querySelectorAll(".removeBtn").forEach(btn =>
-    btn.onclick = e => e.target.closest("tr").remove()
-  );
-});
+  await fetch(API_BASE, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "add", item: newItem })
+  });
 
-// Placeholder for fetching/updating products
-document.getElementById('saveProducts').onclick = () => {
-    // TODO: POST /api/products to backend
-    alert("Products saved (placeholder).");
-};
+  alert("Product added!");
+  loadProducts();
+}
 
-// Placeholder for simulation trigger
-document.getElementById('sellNow').onclick = () => {
-    // TODO: POST /api/start-agent
-    document.getElementById("status").textContent = "Simulation running...";
-};
+// Save updated product
+async function saveProduct(row) {
+  const updatedItem = {
+    product_id: row.dataset.id,
+    name: row.children[0].innerText,
+    price: parseFloat(row.children[1].innerText),
+    inventory: parseInt(row.children[2].innerText)
+  };
 
+  await fetch(API_BASE, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "update", item: updatedItem })
+  });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const sellBtn = document.getElementById('sellNow');
-    const stopBtn = document.getElementById('stopNow');
-    const status = document.getElementById('status');
+  alert("Product updated!");
+}
 
-    if (stopBtn) stopBtn.disabled = true;
+// Delete product
+async function deleteProduct(row) {
+  const id = row.dataset.id;
+  await fetch(API_BASE, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "delete", item: { product_id: id } })
+  });
 
-    if (sellBtn) {
-    sellBtn.addEventListener('click', () => {
-        status.textContent = 'Simulation running...';
-        sellBtn.disabled = true;
-        if (stopBtn) stopBtn.disabled = false;
-        // TODO: POST /api/start-agent
-    });
-    }
+  row.remove();
+  alert("Product deleted!");
+}
 
-    if (stopBtn) {
-    stopBtn.addEventListener('click', () => {
-        status.textContent = 'Simulation stopped.';
-        if (sellBtn) sellBtn.disabled = false;
-        stopBtn.disabled = true;
-        // TODO: POST /api/stop-agent
-    });
-    }
-});
+document.getElementById("addProductBtn").addEventListener("click", addProduct);
+window.onload = loadProducts;

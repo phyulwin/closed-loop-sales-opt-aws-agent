@@ -4,6 +4,28 @@ function showSection(id) {
     document.getElementById(id).classList.add("visible");
 }
 
+const productRows = document.getElementById("productRows");
+
+document.getElementById("addProductBtn").addEventListener("click", () => {
+  const name = document.getElementById("newName").value.trim();
+  const price = parseFloat(document.getElementById("newPrice").value);
+  const stock = parseInt(document.getElementById("newStock").value);
+
+  if (!name || isNaN(price) || isNaN(stock)) return alert("Please fill all fields correctly.");
+
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${name}</td>
+    <td>${price.toFixed(2)}</td>
+    <td>${stock}</td>
+    <td><button class="removeBtn">Remove</button></td>
+  `;
+  productRows.appendChild(row);
+  document.querySelectorAll(".removeBtn").forEach(btn =>
+    btn.onclick = e => e.target.closest("tr").remove()
+  );
+});
+
 // Placeholder for fetching/updating products
 document.getElementById('saveProducts').onclick = () => {
     // TODO: POST /api/products to backend

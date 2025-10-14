@@ -47,5 +47,53 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="src/simulation.js"></script>
+  <script>
+  const API_BASE = "http://localhost:3000/api"; // change to your API Gateway URL when deployed
+
+  // Load all products when page loads
+  async function loadProducts() {
+    const res = await fetch(`${API_BASE}/products`);
+    const products = await res.json();
+
+    const table = document.getElementById("productRows");
+    table.innerHTML = "";
+
+    products.forEach((p) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td><input value="${p.name}" data-id="${p.product_id}" class="name"></td>
+        <td><input value="${p.price}" data-id="${p.product_id}" class="price"></td>
+        <td><input value="${p.stock}" data-id="${p.product_id}" class="stock"></td>
+      `;
+      table.appendChild(row);
+    });
+  }
+
+  // Save updated products
+  async function saveProducts() {
+    const rows = document.querySelectorAll("#productRows tr");
+    for (const row of rows) {
+      const name = row.querySelector(".name").value;
+      const price = parseFloat(row.querySelector(".price").value);
+      const stock = parseInt(row.querySelector(".stock").value);
+      const product_id = name.toLowerCase().replace(/\s+/g, "_"); // simple ID
+      await fetch(`${API_BASE}/products`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ product_id, name, price, stock }),
+      });
+    }
+    alert("Products saved successfully!");
+  }
+
+  document.getElementById("saveProducts").addEventListener("click", saveProducts);
+  window.onload = loadProducts;
+
+  // Navigation between sections
+  function showSection(id) {
+    document.querySelectorAll("main section").forEach((sec) => sec.classList.remove("visible"));
+    document.getElementById(id).classList.add("visible");
+  }
+  </script>
 </body>
 </html>

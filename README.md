@@ -15,7 +15,7 @@ coming soon
 ## How we built it
 
 coming soon   
-For detailed week-by-week updates on the project's development and delivery, see the [Documentation](Documentation).
+For detailed week-by-week updates on the project's development and delivery, see the [Documentation](documentation/architecture-diagram.png).
 
 ## Challenges we ran into
 

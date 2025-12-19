@@ -6,32 +6,38 @@ An AWS Bedrock-powered AI agent that tests prices, simulates demand, and adapts 
 
 ## Inspiration
 
-coming soon 
+Driven by traditional revenue management principles and modern AI automation opportunities.
+Inspired by enterprise pricing teams seeking faster, data-driven decision loops.
 
 ## What it does
 
-coming soon 
+Autonomously tests pricing strategies, simulates demand response, and optimizes sales outcomes continuously.
+Closes the loop through real-time feedback and adaptive decisioning.
 
 ## How we built it
 
-coming soon   
-For detailed week-by-week updates on the project's development and delivery, see the [Documentation](Documentation).
+Architected an AWS Bedrock–powered agent with simulation logic and scalable backend services.
+Integrated pricing experiments, monitoring, and policy updates into a unified workflow.
 
 ## Challenges we ran into
 
-coming soon 
+Balancing exploration versus revenue stability under limited simulated demand signals.
+Designing interpretable outputs from probabilistic model behavior.
 
 ## Accomplishments that we're proud of
 
-coming soon 
+Delivered a functional closed-loop pricing prototype under hackathon constraints.
+Demonstrated enterprise-ready architecture with extensible optimization logic.
 
 ## What we learned
 
-coming soon 
+Closed-loop systems demand disciplined assumptions and strong observability.
+AI agents perform best when grounded in classic pricing fundamentals.
 
 ## What's next for Closed-Loop Sales Optimization Agent
 
-coming soon 
+Expand to multi-product optimization and richer demand signals.
+Prepare for real-world data integration and controlled deployment pilots.
 
 ## Deployment / GitHub Pages
 
